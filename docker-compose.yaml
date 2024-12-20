@@ -1,0 +1,35 @@
+services:
+  chromium:
+    image: lscr.io/linuxserver/chromium:latest
+    container_name: chromium
+    hostname: chromium
+    shm_size: "1gb"
+    restart: unless-stopped
+    networks:  # 设置容器的网络，service网络已创建好，继续使用service网络。
+      - service
+    security_opt:
+      - seccomp:unconfined # 仅对于 Docker 引擎，如果没有它，Chromium 将在无沙箱测试模式下运行。
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai  # 设置容器所属时区
+      - CHROME_CLI=https://m.hesc.info/ # 默认打开的网址
+      - LANGUAGE=zh_CN:zh
+      - LANG=zh_CN.UTF-8
+      - LANG=C.UTF-8  # 设置本地语言为"C.UTF-8",让KasmVNC支持中文输入
+      - TITLE=需要哈气的纸飞机  # 设置页面的标题
+    volumes:
+      - ./config:/config
+      - ./fonts:/usr/share/fonts  # 配置本地中文字体挂载，解决chromium浏览器中文无法显示的问题
+      - /var/run/docker.sock:/var/run/docker.sock  # 挂载docker.sock配置文件
+
+    ports:
+      - 3010:3000
+      - 3011:3001
+    devices:
+      - /dev/dri/:/dev/dri  # 使用GPU加速
+
+
+networks:
+  service:
+    external: true
