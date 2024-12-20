@@ -1,6 +1,0 @@
-2024/12/20-21:42:51.933 142 Creating DB /config/.config/chromium/Default/IndexedDB/https_10.10.0.241_9443.indexeddb.leveldb since it was missing.
-2024/12/20-21:42:51.942 142 Reusing MANIFEST /config/.config/chromium/Default/IndexedDB/https_10.10.0.241_9443.indexeddb.leveldb/MANIFEST-000001
-2024/12/20-22:12:59.226 143 Level-0 table #5: started
-2024/12/20-22:12:59.229 143 Level-0 table #5: 3222 bytes OK
-2024/12/20-22:12:59.233 143 Delete type=0 #3
-2024/12/20-22:12:59.233 143 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
